@@ -1,6 +1,6 @@
-# 454. 4 Sum II
+# 454. 4 Sum II - Medium
 
-## Problem Description:
+## Problem Statement:
 Given four integer arrays nums1, nums2, nums3, and nums4 all of length n, return the number of tuples (i, j, k, l) such that:
 
 - 0 <= i, j, k, l < n
@@ -30,6 +30,11 @@ The two tuples are:
 - n == nums4.length
 - 1 <= n <= 200
 - -228 <= nums1[i], nums2[i], nums3[i], nums4[i] <= 228
+
+## Solution Notes:
+- Using a hashmap to store the sum of first two arrays and the times of the sum
+- Go through the rest two arrays to search for the key of (0 - sum) in the hashmap
+- add the value of search results, and return this value
 
 ## Code:
 
