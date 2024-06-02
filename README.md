@@ -16,10 +16,10 @@ This repository contains the solutions I learned to LeetCode problems. Each prob
 [454. 4 Sum II](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/Hash/454_4Sum_II.md)  
 
 ## Two Pointers  
-[15. 3 Sum](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/Hash/15_3Sum.md)
-[18. 4 Sum](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/TwoPointers/18_4Sum.md)
-[344. Reverse String](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/TwoPointers/344_ReverseString.md)
-[542. Reverse String II](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/TwoPointers/541_ReverseString_II.md)
+[15. 3 Sum](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/Hash/15_3Sum.md)  
+[18. 4 Sum](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/TwoPointers/18_4Sum.md)  
+[344. Reverse String](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/TwoPointers/344_ReverseString.md)  
+[542. Reverse String II](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/TwoPointers/541_ReverseString_II.md)  
 
 ## Contributing
 Contributions are welcome! 
