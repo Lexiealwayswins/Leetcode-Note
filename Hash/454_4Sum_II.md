@@ -36,7 +36,7 @@ The two tuples are:
 - Go through the rest two arrays to search for the key of (0 - sum) in the hashmap
 - add the value of search results, and return this value
 
-## Code:
+## Codes:
 
 ```Java
 class Solution {
