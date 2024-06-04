@@ -2,7 +2,7 @@
 
 This repository contains the solutions I learned to LeetCode problems. Each problem solution is organized into its own file, classified by data structure or algorithms, and includes the problem statement, my solution code, and any relevant notes.
 
-## Table of Catalog
+## Catalog
 1. Array
 2. LinkedList
 3. [Hash](https://github.com/Lexiealwayswins/Leetcode-Note/tree/main/Hash)
