@@ -8,12 +8,12 @@ You must do this by modifying the **Input:** array in-place with O(1) extra memo
  
 ### Example 1:
 
-**Input:**: s = ["h","e","l","l","o"]
-**Output:**: ["o","l","l","e","h"]
+**Input:** s = ["h","e","l","l","o"]
+**Output:** ["o","l","l","e","h"]
 Example 2:
 
-**Input:**: s = ["H","a","n","n","a","h"]
-**Output:**: ["h","a","n","n","a","H"]
+**Input:** s = ["H","a","n","n","a","h"]
+**Output:** ["h","a","n","n","a","H"]
  
 
 ### Constraints:

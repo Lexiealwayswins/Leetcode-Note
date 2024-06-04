@@ -9,18 +9,18 @@ Given a linked list, swap every two adjacent nodes and return its head. You must
 
 ![](https://assets.leetcode.com/uploads/2020/10/03/swap_ex1.jpg)
 
-**Input:**: head = [1,2,3,4]
-**Output:**: [2,1,4,3]
+**Input:** head = [1,2,3,4]
+**Output:** [2,1,4,3]
 
 ### Example 2:
 
-**Input:**: head = []
-**Output:**: []
+**Input:** head = []
+**Output:** []
 
 ### Example 3:
 
-**Input:**: head = [1]
-**Output:**: [1]
+**Input:** head = [1]
+**Output:** [1]
  
 ### Constraints:
 
