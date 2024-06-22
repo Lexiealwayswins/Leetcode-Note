@@ -2,6 +2,7 @@
 
 ## Problem Statement:
 
+[KamaCoderLink](https://kamacoder.com/problempage.php?pid=1064)  
 Given a string s, which contains lowercase letters and numeric characters, write a function that leaves the alphabetic characters in the string unchanged and replaces each numeric character with number. For example, given the input string "a1b2c3", the function should convert it to "anumberbnumbercnumber".
 
 ### Example 1:
@@ -16,7 +17,7 @@ Given a string s, which contains lowercase letters and numeric characters, write
 - Both pointers start from the end so that we don't need to move the character backwards
 - Try to make space for extra length
 
-## Codes:s
+## Codes:
 
 ```Java
 import java.util.Scanner;
