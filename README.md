@@ -6,7 +6,7 @@ This repository contains the solutions I learned to LeetCode problems. Each prob
 1. [Array](https://github.com/Lexiealwayswins/Leetcode-Note/tree/main/Array)  
 2. [LinkedList](https://github.com/Lexiealwayswins/Leetcode-Note/tree/main/LinkedList)  
 3. [Hash](https://github.com/Lexiealwayswins/Leetcode-Note/tree/main/Hash)  
-4. String
+4. [String](https://github.com/Lexiealwayswins/Leetcode-Note/tree/main/String)  
 5. [Two Pointers](https://github.com/Lexiealwayswins/Leetcode-Note/tree/main/TwoPointers)
 6. Stack and Queue
 7. Binary Tree
@@ -16,6 +16,7 @@ This repository contains the solutions I learned to LeetCode problems. Each prob
 [59. Spiral Matrix II - Medium](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/Array/59_SpiralMatrix_II.md)
 
 ## Hash
+[1. Two Sum](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/Hash/1_TwoSum.md)  
 [202. Happy Number - Easy](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/Hash/202_HappyNumber.md)  
 [242. Valid Anagram - Easy](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/Hash/242_ValidAnagram.md)  
 [349. Intersection of Two Arrays - Easy](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/Hash/349_IntersectionofTwoArrays.md)  
@@ -30,6 +31,10 @@ This repository contains the solutions I learned to LeetCode problems. Each prob
 [203. Remove Linked List Elements - Easy](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/LinkedList/203_RemoveLinkedListElements.md)  
 [206. Reverse Linked List - Easy](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/LinkedList/206_ReverseLinkedList.md)  
 [707. Design Linked List - Medium](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/LinkedList/707_DesignLinkedList.md)  
+
+## String
+[151. Reverse Words in a String](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/String/151_ReverseWordsInAString.md)  
+[Right Rotation of String](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/String/RightReverseString.md)  
 
 ## Two Pointers  
 [15. 3 Sum - Medium](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/Hash/15_3Sum.md)  
