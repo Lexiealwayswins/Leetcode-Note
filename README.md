@@ -32,7 +32,8 @@ This repository contains the solutions I learned to LeetCode problems. Each prob
 [206. Reverse Linked List - Easy](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/LinkedList/206_ReverseLinkedList.md)  
 [707. Design Linked List - Medium](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/LinkedList/707_DesignLinkedList.md)  
 
-## String
+## String  
+[28. Find the Index of the First Occurrence in a String](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/String/28_FindtheIndexOftheFirstOccurrenceInAString.md)  
 [151. Reverse Words in a String](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/String/151_ReverseWordsInAString.md)  
 [Right Rotation of String](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/String/RightReverseString.md)  
 
