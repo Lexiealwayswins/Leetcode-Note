@@ -34,8 +34,10 @@ This repository contains the solutions I learned to LeetCode problems. Each prob
 
 ## String  
 [28. Find the Index of the First Occurrence in a String](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/String/28_FindtheIndexOftheFirstOccurrenceInAString.md)  
+[459. Repeated Substring Pattern](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/String/459_RepeatedSubstringPattern.md)
 [151. Reverse Words in a String](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/String/151_ReverseWordsInAString.md)  
 [Right Rotation of String](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/String/RightReverseString.md)  
+
 
 ## Two Pointers  
 [15. 3 Sum - Medium](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/Hash/15_3Sum.md)  
