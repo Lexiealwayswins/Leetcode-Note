@@ -30,6 +30,7 @@ Given a string s, check if it can be constructed by taking a substring of it and
 
 ## Solution Notes:
 - use KMP Algorithm to get the prefix table, which is a array of the greatest dublicate prefix number.
+- ![](https://img-blog.csdnimg.cn/img_convert/5bfe14f5823fef0b9556f0406b2a8c00.png)
 
 ## Codes:
 

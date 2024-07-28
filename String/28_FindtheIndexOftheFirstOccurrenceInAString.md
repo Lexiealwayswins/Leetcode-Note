@@ -24,7 +24,10 @@ The first occurrence is at index 0, so we return 0.
 haystack and needle consist of only lowercase English characters.
 
 ## Solution Notes:
-- use KMP Algorithm to get the prefix table, which is a array of the greatest dublicate prefix number.
+- use KMP Algorithm to get the prefix table, which is a array of the greatest dublicate prefix number.  
+- ![](https://code-thinking.cdn.bcebos.com/pics/KMP精讲8.png)
+- The reason why this approach is efficient: as the prefix is the same as suffix in the prefix table, when we meet a different character, we can skip matching the prefix and jump to the position which is after the prefix and before the suffix.
+
 
 ## Codes:
 
