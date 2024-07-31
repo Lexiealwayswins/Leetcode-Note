@@ -8,7 +8,7 @@ This repository contains the solutions I learned to LeetCode problems. Each prob
 3. [Hash](https://github.com/Lexiealwayswins/Leetcode-Note/tree/main/Hash)  
 4. [String](https://github.com/Lexiealwayswins/Leetcode-Note/tree/main/String)  
 5. [Two Pointers](https://github.com/Lexiealwayswins/Leetcode-Note/tree/main/TwoPointers)
-6. Stack and Queue
+6. [Stack and Queue](https://github.com/Lexiealwayswins/Leetcode-Note/tree/main/StackAndQueue)
 7. Binary Tree
 ...
 
@@ -45,6 +45,12 @@ This repository contains the solutions I learned to LeetCode problems. Each prob
 [344. Reverse String - Easy](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/TwoPointers/344_ReverseString.md)  
 [541. Reverse String II - Easy](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/TwoPointers/541_ReverseString_II.md)   
 [Replace String - Medium](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/TwoPointers/ReplaceNumber.md)  
+
+## Stack and Queue
+[225. Implement Stack using Queues](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/StackAndQueue/225_ImplementStackUsingQueues.md)
+[232. Implement Queue using Stacks](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/StackAndQueue/232_ImplementQueueUsingStacks.md)
+[20. Valid Parentheses](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/StackAndQueue/20_ValidParentheses.md)
+[1047. Remove All Adjacent Duplicates In String](https://github.com/Lexiealwayswins/Leetcode-Note/blob/main/StackAndQueue/1047_RemoveAllAdjacentDuplicatesInString.md)
 
 ## Contributing
 Contributions are welcome! 
