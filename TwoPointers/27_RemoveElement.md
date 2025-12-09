@@ -55,6 +55,39 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 ## Codes:
 
 Solution 1: 
+
+- Python
+```Python
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        s, f = 0, 0
+        for f in range(len(nums)):
+            if nums[f] != val:
+                nums[s] = nums[f]
+                s += 1
+        return s
+```
+
+- JavaScript
+```JavaScript
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+var removeElement = function(nums, val) {
+    let s = 0, f = 0;
+    for (f = 0; f < nums.length; f++) {
+        if (nums[f] != val) {
+            nums[s] = nums[f];
+            s++;
+        }
+    }
+    return s;
+};
+```
+
+- Java
 ```Java
 class Solution {
     public int removeElement(int[] nums, int val) {
@@ -72,6 +105,44 @@ class Solution {
 ```
 
 Solution 2: 
+
+- Python
+```Python
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        l, r = 0, len(nums) - 1
+        while l <= r:
+            if nums[l] == val:
+                nums[l] = nums[r]
+                r -= 1
+            else:
+                l += 1
+        return l
+        
+```
+
+- JavaScript
+```JavaScript
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+var removeElement = function(nums, val) {
+    let l = 0, r = nums.length - 1;
+    while (l <= r) {
+        if (nums[l] == val) {
+            nums[l] = nums[r];
+            r--;
+        } else {
+            l++;
+        }
+    }
+    return l;
+};
+```
+
+- Java
 ```Java
 class Solution {
     public int removeElement(int[] nums, int val) {
