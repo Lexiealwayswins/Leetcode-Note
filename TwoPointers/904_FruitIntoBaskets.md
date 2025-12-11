@@ -43,7 +43,7 @@ If we had started at the first tree, we would only pick from trees [1,2].
 - Sliding windows
 
 ## Codes:
-
+- Python
 ```Python
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
@@ -63,7 +63,68 @@ class Solution:
             
             res = max(res, fast - slow + 1)
 
-        return res
+        return res  
+```
 
-        
+- JavaScript
+```JavaScript
+/**
+ * @param {number[]} fruits
+ * @return {number}
+ */
+var totalFruit = function(fruits) {
+    let map = new Map();
+    let l = 0, res = 0;
+    for (let i = 0; i < fruits.length; i++) {
+        map.set(fruits[i], (map.get(fruits[i]) || 0) + 1);
+
+        while (map.size > 2) {
+            map.set(fruits[l], map.get(fruits[l]) - 1);
+            if (map.get(fruits[l]) == 0) {
+                map.delete(fruits[l]);
+            }
+            l++;
+        }
+        res = Math.max(res, i - l + 1);
+    }
+    return res;
+
+};
+```
+
+- Java
+```Java
+class Solution {
+    public int totalFruit(int[] fruits) {
+        // 移动窗口法
+        int slow = 0, fast = 0;
+        int basket_size = 0, windows = 0;
+        HashMap<Integer, Integer> basket = new HashMap<>();
+
+        while (fast < fruits.length) {
+            if (!basket.containsKey(fruits[fast])) {
+                basket.put(fruits[fast], 1);
+                basket_size++;
+
+                while (basket_size > 2) {
+                    int fruit_num = basket.get(fruits[slow]);
+                    if (fruit_num == 1) {
+                        basket.remove(fruits[slow]);
+                        basket_size--;
+                    } else {
+                        basket.put(fruits[slow], fruit_num - 1);
+                    }
+                    slow++;
+                }
+            } else {
+                basket.put(fruits[fast], basket.get(fruits[fast]) + 1);
+            }
+
+            windows = Math.max(windows, fast - slow + 1);
+            fast++;
+        }
+        return windows;
+
+    }
+}
 ```

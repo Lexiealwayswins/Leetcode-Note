@@ -35,6 +35,13 @@ Since the largest window of s only has one 'a', return empty string.
 
 ### Follow up: Could you find an algorithm that runs in O(m + n) time?
 
+## Solution Notes:
+- Two Pointers approach
+- Sliding windows
+
+## Codes:
+
+- Python
 ```Python
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
@@ -58,6 +65,40 @@ class Solution:
                         count -= 1
                 slow += 1
 
-        return res
-        
+        return res  
+```
+
+- JavaScript
+```JavaScript
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {string}
+ */
+var minWindow = function(s, t) {
+    let obj = [...t].reduce((acc, c) => {
+        acc[c] = (acc[c] || 0) + 1;
+        return acc;
+    }, {});
+    let l = 0, count = 0, min_len = Number.MAX_VALUE, res = "";
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] in obj) {
+            obj[s[i]]--;
+            if (obj[s[i]] >= 0) count++;
+        }
+
+        while (count == t.length) {
+            if (min_len > i - l + 1) {
+                min_len = i - l + 1;
+                res = s.slice(l, i + 1);
+            }
+            if (s[l] in obj) {
+                obj[s[l]]++;
+                if (obj[s[l]] > 0) count--;
+            }
+            l++;
+        }
+    }
+    return res;
+};
 ```

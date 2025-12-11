@@ -36,7 +36,47 @@ Given an array of positive integers nums and a positive integer target, return t
 - Sliding windows
 
 ## Codes:
+-Python
+```Python
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        l = 0
+        s = 0
+        min_len = float('inf')
+        for i in range(len(nums)):
+            s += nums[i]
+            while s >= target:
+                min_len = min(i - l + 1, min_len)
+                s -= nums[l]
+                l += 1
+        if min_len == float('inf'):
+            return 0
+        else:
+            return min_len
+```
 
+- JavaScript
+```JavaScript
+/**
+ * @param {number} target
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minSubArrayLen = function(target, nums) {
+    let l = 0, sum = 0, res = Number.MAX_VALUE;
+    for (let i = 0; i < nums.length; i++) {
+        sum += nums[i];
+        while (sum >= target) {
+            res = Math.min(res, i - l + 1);
+            sum -= nums[l];
+            l++;
+        }
+    }
+    return res == Number.MAX_VALUE ? 0 : res;
+};
+```
+
+- Java
 ```Java
 class Solution {
     public int minSubArrayLen(int target, int[] nums) {

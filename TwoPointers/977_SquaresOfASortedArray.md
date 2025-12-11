@@ -31,7 +31,49 @@ After sorting, it becomes [0,1,9,16,100].
 - Compare the two sides to see whether the square of negative numbers are bigger than the square of positive numbers
 
 ## Codes:
+- Python
+```Python
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        l, r, i = 0, len(nums) - 1, len(nums) - 1
+        res = [0] * len(nums)
+        while l <= r:
+            if nums[l] * nums[l] < nums[r] * nums[r]:
+                res[i] = nums[r] * nums[r]
+                r -= 1
+            else:
+                res[i] = nums[l] * nums[l]
+                l += 1
+            i -= 1
+        
+        return res
+```
 
+- JavaScript
+```JavaScript
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var sortedSquares = function(nums) {
+    let l = 0, r = nums.length - 1;
+    let i = nums.length - 1;
+    let res = [];
+    while (l <= r) {
+        if (nums[r] * nums[r] > nums[l] * nums[l]) {
+            res[i] = nums[r] * nums[r];
+            r--;
+        } else {
+            res[i] = nums[l] * nums[l];
+            l++
+        }
+        i--;
+    }
+    return res;
+};
+```
+
+- Java
 ```Java
 class Solution {
     public int[] sortedSquares(int[] nums) {
