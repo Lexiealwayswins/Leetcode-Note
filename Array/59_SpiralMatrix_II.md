@@ -23,6 +23,72 @@ Given a positive integer n, generate an n x n matrix filled with elements from 1
 
 ## Codes:
 
+- Python
+``` Python
+class Solution:
+    def generateMatrix(self, n: int) -> List[List[int]]:
+        res = [[0] * n for _ in range(n)]
+        l, r, u, d, count = 0, n - 1, 0, n - 1, 0
+        while True:
+            for i in range(l, r + 1): 
+                count += 1
+                res[u][i] = count
+            u += 1
+            if u > d: break
+
+            for i in range(u, d + 1): 
+                count += 1
+                res[i][r] = count
+            r -= 1
+            if r < l: break
+
+            for i in range(r, l - 1, -1): 
+                count += 1
+                res[d][i] = count
+            d -= 1
+            if d < u: break
+
+
+            for i in range(d, u - 1, -1): 
+                count += 1
+                res[i][l] = count
+            l += 1
+            if l > r: break
+
+        return res
+```
+
+
+- JavaScript
+```JavaScript
+/**
+ * @param {number} n
+ * @return {number[][]}
+ */
+var generateMatrix = function(n) {
+    let res = new Array(n).fill(0).map(() => new Array(n).fill(0));
+    let count = 0;
+    let l = 0, r = n - 1, u = 0, d = n - 1;
+
+    while (true) {
+        for (let i = l; i <= r; i++) res[u][i] = ++count;
+        if (++u > d) break;
+
+        for (let i = u; i <= d; i++) res[i][r] = ++count;
+        if (--r < l) break;
+
+        for (let i = r; i >= l; i--) res[d][i] = ++count;
+        if (--d < u) break;
+
+        for (let i = d; i >= u; i--) res[i][l] = ++count;
+        if (++l > r) break;
+    }
+    return res;
+};
+```
+
+- Java
+
 ```Java
 class Solution {
     public int[][] generateMatrix(int n) {
