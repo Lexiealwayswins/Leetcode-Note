@@ -30,7 +30,78 @@ Given the head of a linked list and an integer val, remove all the nodes of the 
 - Make use of the dummyhead
 
 ## Codes:
+- Python
+```Python
+# Solution 1
 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+        dummy = ListNode(next = head)
+        curr = dummy
+        while curr.next:
+            if curr.next.val == val:
+                curr.next = curr.next.next
+            else:
+                curr = curr.next
+        return dummy.next
+
+# Solution 2:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+        if head == None: return None
+        while head != None and head.val == val:
+            head = head.next
+            if head == None: return None
+        
+        curr = head
+        while curr.next != None:
+            if curr.next.val == val:
+                curr.next = curr.next.next
+            else:
+                curr = curr.next
+        return head
+```
+
+- JavaScript
+```JavaScript
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} val
+ * @return {ListNode}
+ */
+var removeElements = function(head, val) {
+    const dummy = new ListNode(0, head);
+    let curr = dummy;
+    while (curr.next) {
+        if (curr.next.val == val) {
+            curr.next = curr.next.next;
+        } else {
+            curr = curr.next;
+        }
+    }
+    return dummy.next;
+};
+```
+
+- Java
 ```Java
 /**
  * Definition for singly-linked list.
