@@ -42,6 +42,8 @@ void deleteAtIndex(int index) Delete the indexth node in the linked list, if the
 
 ## Solution Notes:
 - Try to resuse the methods
+- Single Linked List
+- Doubly Linked List
 
 ## Codes:
 - Python

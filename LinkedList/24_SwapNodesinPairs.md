@@ -28,10 +28,110 @@ Given a linked list, swap every two adjacent nodes and return its head. You must
 - 0 <= Node.val <= 100
 
 ## Solution Notes:
+- use dummy node
 - Try to use recursion
 
 ## Codes:
+- Python
+```python
+# Dummy node:
 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        curr = dummy
+        while curr.next and curr.next.next:
+            temp1 = curr.next
+            temp2 = curr.next.next.next
+            curr.next = curr.next.next
+            curr.next.next = temp1
+            temp1.next = temp2
+            curr = curr.next.next
+        return dummy.next
+
+
+# Recursion:
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next: return head
+
+        temp = head.next
+        newNode = self.swapPairs(temp.next)
+        temp.next = head
+        head.next = newNode
+
+        return temp
+```
+
+- JavaScript
+```JavaScript
+// Dummy Node
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var swapPairs = function(head) {
+    let dummy = new ListNode(0, head);
+    let curr = dummy;
+
+    while (curr.next && curr.next.next) {
+        let temp1 = curr.next;
+        let temp2 = curr.next.next.next;
+        curr.next = curr.next.next;
+        curr.next.next = temp1;
+        temp1.next = temp2;
+        curr = curr.next.next;
+    }
+
+    return dummy.next;
+
+};
+
+// Recursion
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var swapPairs = function(head) {
+    if (!head || !head.next) return head;
+
+    let temp = head.next;
+    let newNode = swapPairs(temp.next);
+    temp.next = head;
+    head.next = newNode;
+
+    return temp;
+
+};
+```
+
+
+
+- Java
 ```Java
 /**
  * Definition for singly-linked list.
