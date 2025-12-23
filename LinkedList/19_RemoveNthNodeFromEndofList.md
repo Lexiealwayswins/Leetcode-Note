@@ -37,7 +37,64 @@ Given the head of a linked list, remove the nth node from the end of the list an
 - when the fast pointer reached the tail, the slow pointer reached the target
 
 ## Codes:
+- Python 
+```Python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        f = dummy
+        s = dummy
+        for i in range(n):
+            f = f.next
 
+        while f.next:
+            f = f.next
+            s = s.next
+
+        s.next = s.next.next
+
+        return dummy.next
+```
+
+- JavaScript
+```JavaScript
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} n
+ * @return {ListNode}
+ */
+var removeNthFromEnd = function(head, n) {
+    const dummy = new ListNode(0, head);
+    let f = dummy;
+    let s = dummy;
+
+    for (let i = 0; i < n; i++) {
+        f = f.next;
+    }
+
+    while (f.next) {
+        f = f.next;
+        s = s.next;
+    }
+
+    s.next = s.next.next;
+    return dummy.next;
+};
+```
+
+- Java
 ```Java
 
 /**
