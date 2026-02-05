@@ -37,6 +37,53 @@ The two tuples are:
 - add the value of search results, and return this value
 
 ## Codes:
+```Python
+class Solution:
+    def fourSumCount(self, nums1: List[int], nums2: List[int], nums3: List[int], nums4: List[int]) -> int:
+        dic = {}
+        for a in nums1:
+            for b in nums2:
+                if a + b in dic:
+                    dic[a + b] += 1
+                else:
+                    dic[a + b] = 1
+        count = 0
+        for c in nums3:
+            for d in nums4:
+                if 0 - c - d in dic:
+                    count += dic[0 - c - d]
+        return count
+```
+
+```JavaScript
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @param {number[]} nums3
+ * @param {number[]} nums4
+ * @return {number}
+ */
+var fourSumCount = function(nums1, nums2, nums3, nums4) {
+    let map = new Map();
+    for (const a of nums1) {
+        for (const b of nums2) {
+            map.set(a + b, (map.get(a + b) || 0) + 1);
+        }
+    }
+
+    let count = 0;
+
+    for (const c of nums3) {
+        for (const d of nums4) {
+            if (map.has(0 - c - d)) {
+                count += map.get(0 - c - d);
+            }
+        }
+    }
+
+    return count;
+};
+```
 
 ```Java
 class Solution {

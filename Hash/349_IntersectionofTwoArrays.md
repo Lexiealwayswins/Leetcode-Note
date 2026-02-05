@@ -24,7 +24,38 @@ Given two integer arrays nums1 and nums2, return an array of their intersection.
 - Using hashsets to do de-duplication
 
 ## Codes:
+- Python
+```Python
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        return list(set(nums1) & set(nums2))
+```
 
+- JavaScript
+```JavaScript
+// 性能最好 O(m+n)
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var intersection = function(nums1, nums2) {
+    const s2 = new Set(nums2);
+    return Array.from(new Set(nums1.filter(n => s2.has(n))));
+};
+
+//其次 O(m*n)
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var intersection = function(nums1, nums2) {
+    return Array.from(new Set(nums1.filter(n => nums2.includes(n))));
+};
+```
+
+- Java
 ```Java
 class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {

@@ -17,10 +17,10 @@ Return true if n is a happy number, and false if not.
 **Input:** n = 19
 **Output:** true
 Explanation:
-12 + 92 = 82
-82 + 22 = 68
-62 + 82 = 100
-12 + 02 + 02 = 1
+1^2 + 9^2 = 82
+8^2 + 2^2 = 68
+6^2 + 8^2 = 100
+1^2 + 0^2 + 0^2 = 1
 
 ### Example 2:
 
@@ -33,9 +33,72 @@ Explanation:
 
 ## Solution Notes:
 - Using hashsets to do de-duplication
+- If sum appears repeatedly, it means the loop is infinite and cannot become 1, so we should immediately return false
 
 ## Codes:
+- Python
+```Python
+# Solution 1:
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        s = set()
+        while True:
+            if n == 1: return True
+            if n in s: return False
+            s.add(n)
+            n = self.getSum(n)
 
+    def getSum(self, n: int) -> int:
+        sum = 0
+        while n:
+            # divmod(a, b) == (a // b, a % b)
+            n, r = divmod(n, 10)
+            sum += r ** 2
+        return sum
+
+# Solution 2:
+class Solution:
+   def isHappy(self, n: int) -> bool:
+       record = set()
+       while n not in record:
+           record.add(n)
+           new_num = 0
+           n_str = str(n)
+           for i in n_str:
+               new_num += int(i)**2
+           if new_num==1: return True
+           else: n = new_num
+       return False
+```
+
+- JavaScript
+```JavaScript
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isHappy = function(n) {
+    let map = new Map();
+
+    function getSum(n) {
+        let sum = 0;
+        while (n) {
+            sum += (n % 10) ** 2;
+            n = Math.floor(n / 10)
+        }
+        return sum;
+    }
+
+    while (true) {
+        if (n === 1) return true;
+        if (map.has(n)) return false;
+        map.set(n, 1);
+        n = getSum(n);
+    }
+};
+```
+
+- Java
 ```Java
 class Solution {
     public boolean isHappy(int n) {

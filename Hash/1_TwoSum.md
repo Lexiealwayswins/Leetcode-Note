@@ -23,10 +23,71 @@ Example 3:
 **Output:** [0,1]
 
 ## Solution Notes:
-- Use HashMap
+- Python can use set, dict
+- Javascript can use set, map
+- Java can use HashMap
 - Also it can use two Pointers, but more complicated
 
 ## Codes:
+```Python
+# Solution 1:
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        seen = set()
+        for i, num in enumerate(nums):
+            left = target - num
+            if left in seen:
+                return [nums.index(left), i]
+            seen.add(num)
+        return []
+
+# Solution 2:
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        seen = {}
+        for i, num in enumerate(nums):
+            left = target - num
+            if left in seen:
+                return [seen[left], i]
+            seen[num] = i
+        return []
+```
+
+```JavaScript
+// Solution 1:
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+    let seen = {};
+    for (let i = 0; i < nums.length; i++) {
+        if (seen[target - nums[i]] !== undefined) {
+            return [seen[target - nums[i]], i];
+        }
+        seen[nums[i]] = i;
+    }
+    return [];
+};
+
+// Solution 2:
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+    let seen = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        if (seen.has(target - nums[i])) {
+            return [seen.get(target - nums[i]), i];
+        }
+        seen.set(nums[i], i);
+    }
+    return [];
+};
+```
 
 ```Java
 // Hashmap Approach:
