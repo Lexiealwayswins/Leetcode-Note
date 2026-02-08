@@ -36,6 +36,49 @@ Every close bracket has a corresponding open bracket of the same type.
 - If the stack is empty in the end, it should return true
 
 ## Codes:
+```Python
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        map = {
+            '(': ')',
+            '[': ']',
+            '{': '}'
+        }
+
+        for i in s:
+            if i in map.keys():
+                stack.append(map[i])
+            elif not stack or stack[-1] != i:
+                return False
+            else:
+                stack.pop()
+        return not len(stack)
+```
+
+```JavaScript
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function(s) {
+    let arr = [];
+    for (const c of s) {
+        if (c === '(') {
+            arr.push(')');
+        } else if (c === '[') {
+            arr.push(']');
+        } else if (c === '{') {
+            arr.push('}');
+        } else if (!arr.length || arr[arr.length - 1] !== c) {
+            return false;
+        } else {
+            arr.pop();
+        }
+    }
+    return !arr.length;
+};
+```
 
 ```Java
 class Solution {

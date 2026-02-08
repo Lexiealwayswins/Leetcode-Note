@@ -32,6 +32,41 @@ For example, in "abbaca" we could remove "bb" since the letters are adjacent and
 - Use a String to realize stack so that we do not need to transfer from stack to string 
 
 ## Codes:
+```Python
+# Two pointer approach
+class Solution:
+    def removeDuplicates(self, s: str) -> str:
+        res = list(s)
+        l, r = 0, 0
+        while r < len(s):
+            res[l] = res[r]
+            if l > 0 and res[l] == res[l - 1]:
+                l -= 1
+            else:
+                l += 1
+
+            r += 1
+        return "".join(res[0 : l])
+```
+
+
+```JavaScript
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var removeDuplicates = function(s) {
+    let stack = [];
+    for (const c of s) {
+        if (stack.length > 0 && stack[stack.length - 1] === c) {
+            stack.pop();
+        } else {
+            stack.push(c);
+        }
+    }
+    return stack.join('');
+};
+```
 
 ```Java
 class Solution {

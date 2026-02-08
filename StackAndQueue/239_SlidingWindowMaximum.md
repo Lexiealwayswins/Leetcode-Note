@@ -33,9 +33,56 @@ Window position                Max
 - 1 <= k <= nums.length
 
 ## Solution Notes:
-- Record the max number in a sliding window using a deque.
+- Record the index of max number in a sliding window using a deque, which follows a descending order
+- Use index rather than number value to cover case like [-7,-8,7,5,7,1,6,0]
 
 ## Codes:
+```Python
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        deque = collections.deque()
+        res = []
+
+        for i in range(len(nums)):
+            if len(deque) > 0 and i - k >= deque[0]:
+                deque.popleft()
+            while len(deque) > 0 and nums[deque[-1]] <= nums[i]:
+                deque.pop()
+            
+            deque.append(i)
+        
+            if i - k + 1 >= 0:
+                res.append(nums[deque[0]])
+
+        return res
+```
+
+```JavaScript
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+var maxSlidingWindow = function(nums, k) {
+    let deque = [];
+    let res = []
+    for (let i = 0; i < nums.length; i++) {
+        if (deque.length && i - k >= deque[0]) {
+            deque.shift();
+        }
+        while (deque.length && nums[i] >= nums[deque[deque.length - 1]]) {
+            deque.pop();
+        }
+        deque.push(i);
+
+        if (i >= k - 1) {
+            res.push(nums[deque[0]]);
+        }
+
+    }
+    return res;
+};
+```
 
 ```Java
 class Solution {

@@ -43,6 +43,86 @@ Follow-up: Can you implement the queue such that each operation is amortized O(1
 - We can implement queue using two stacks.  
 
 ## Codes:
+```Python
+class MyQueue:
+    def __init__(self):
+        self.stackIn = []
+        self.stackOut = []
+
+    def push(self, x: int) -> None:
+        self.stackIn.append(x)
+
+    def pop(self) -> int:
+        if self.empty(): return None
+        if self.stackOut: return self.stackOut.pop()
+        while self.stackIn: self.stackOut.append(self.stackIn.pop())
+        return self.stackOut.pop()
+
+    def peek(self) -> int:
+        x = self.pop()
+        self.stackOut.append(x)
+        return x
+
+    def empty(self) -> bool:
+        return not (self.stackOut or self.stackIn)
+
+
+# Your MyQueue object will be instantiated and called as such:
+# obj = MyQueue()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.peek()
+# param_4 = obj.empty()
+```
+
+```JavaScript
+var MyQueue = function() {
+    this.stackIn = [];
+    this.stackOut = [];
+};
+
+/** 
+ * @param {number} x
+ * @return {void}
+ */
+MyQueue.prototype.push = function(x) {
+    this.stackIn.push(x);
+};
+
+/**
+ * @return {number}
+ */
+MyQueue.prototype.pop = function() {
+    if (this.stackOut.length) return this.stackOut.pop();
+    while (this.stackIn.length) this.stackOut.push(this.stackIn.pop());
+    return this.stackOut.pop();
+};
+
+/**
+ * @return {number}
+ */
+MyQueue.prototype.peek = function() {
+    const x = this.pop();
+    this.stackOut.push(x);
+    return x;
+};
+
+/**
+ * @return {boolean}
+ */
+MyQueue.prototype.empty = function() {
+    return !this.stackIn.length && !this.stackOut.length;
+};
+
+/** 
+ * Your MyQueue object will be instantiated and called as such:
+ * var obj = new MyQueue()
+ * obj.push(x)
+ * var param_2 = obj.pop()
+ * var param_3 = obj.peek()
+ * var param_4 = obj.empty()
+ */
+```
 
 ```Java
 class MyQueue {

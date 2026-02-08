@@ -49,6 +49,59 @@ The answer and all the intermediate calculations can be represented in a 32-bit 
 - Use Stack
 
 ## Codes:
+```Python
+from operator import add, sub, mul
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        dic = {
+            '+': add,
+            '-': sub,
+            '*': mul,
+            '/': self.div
+        }
+        for i in tokens:
+            if i in dic:
+                b = stack.pop()
+                a = stack.pop()
+                stack.append(dic[i](int(a), int(b)))
+            else:
+                stack.append(int(i))
+
+        return stack.pop()
+
+    def div (self, a, b):
+        return int(a / b) if a * b > 0 else -(abs(a) // abs(b))
+
+```
+
+```JavaScript
+/**
+ * @param {string[]} tokens
+ * @return {number}
+ */
+var evalRPN = function(tokens) {
+    let stack = [];
+    for (const i of tokens) {
+        if (isNaN(Number(i))) {
+            const b = stack.pop();
+            const a = stack.pop();
+            if (i === '+') {
+                stack.push(a + b);
+            } else if (i === '-') {
+                stack.push(a - b);
+            } else if (i === '*') {
+                stack.push(a * b);
+            } else if (i === '/') {
+                stack.push(a / b | 0); // | 0是向0取整的位运算，2.9 | 0的结果是 2， -2.9 | 0 的结果是 -2
+            }
+        } else {
+            stack.push(Number(i));
+        }
+    }
+    return stack.pop();
+};
+```
 
 ```Java
 class Solution {
