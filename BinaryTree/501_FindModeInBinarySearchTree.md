@@ -34,10 +34,108 @@ Both the left and right subtrees must also be binary search trees.
 ### Follow up: Could you do that without using any extra space? (Assume that the implicit stack space incurred due to recursion does not count).
 
 ## Solution Notes:  
+- Recursion
 - Use inorder traversion
 - Use hashmap to record the frequency
 
 ## Codes:
+```Python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def __init__(self):
+        self.count = 0
+        self.prev = None
+        self.maxMode = float("-inf")
+        self.res = []
+
+    def findMode(self, root: Optional[TreeNode]) -> List[int]:
+        if not root: return []
+        self.getFreq(root)
+        return self.res
+
+    def getFreq(self, node: Optional[TreeNode]) -> None:
+        if not node: return
+
+        self.getFreq(node.left)
+
+        if not self.prev:
+            self.count = 1
+        elif self.prev.val == node.val:
+            self.count += 1
+        else:
+            self.count = 1
+        self.prev = node
+
+        if self.maxMode == self.count:
+            self.res.append(node.val)
+        if self.maxMode < self.count:
+            self.maxMode = self.count
+            self.res.clear()
+            self.res.append(node.val)
+
+        self.getFreq(node.right)
+```
+
+```TypeScript
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+function findMode(root: TreeNode | null): number[] {
+    if (!root) return [];
+    let res: number[] = [];
+    let curr: TreeNode | null = root;
+    let prev: TreeNode | null = null;
+    let count: number = 0;
+    let maxMode: number = 0;
+
+    let stack: TreeNode[] = [];
+
+    while (curr || stack.length) {
+        if (curr) {
+            stack.push(curr);
+            curr = curr.left;
+        } else {
+            curr = stack.pop();
+            if (!prev) {
+                count = 1;
+            } else if (prev.val === curr.val) {
+                count++;
+            } else {
+                count = 1;
+            }
+            if (maxMode === count) {
+                res.push(curr.val)
+            } else if (maxMode < count) {
+                res = [];
+                maxMode = count;
+                res.push(curr.val);
+            }
+            prev = curr;
+            curr = curr.right;
+        }
+    }
+    return res;
+
+};
+```
+
+
 ```Java
 /**
  * Definition for a binary tree node.
@@ -87,4 +185,4 @@ class Solution {
         return result;
     }
 }
-```Java
+```

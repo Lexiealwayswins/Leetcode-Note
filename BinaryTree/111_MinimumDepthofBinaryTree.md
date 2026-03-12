@@ -27,7 +27,7 @@ Note: A leaf is a node with no children.
 
 ## Solution Notes:  
 - Recursion
-- BFS
+- BFS Iteration
 
 ## Codes:
 ```Python
@@ -81,7 +81,7 @@ var minDepth = function(root) {
     }
 };
 
-// Solution 2: 
+// Solution 2: Iteration
 /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {

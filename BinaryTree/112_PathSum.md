@@ -45,6 +45,80 @@ There is no root-to-leaf path with sum = 5.
 - Use a stack object to store both the node and the sum
 
 ## Codes:
+```Python
+# Recursion: 
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        if not root: return False
+        total = root.val
+        return self.checkSum(root, total, targetSum)
+
+    def checkSum(self, node: Optional[TreeNode], total: int, targetSum: int) -> bool:
+        if not node.left and not node.right:
+            if total == targetSum:
+                return True
+        
+        if node.left: 
+            if self.checkSum(node.left, total + node.left.val, targetSum):
+                return True
+        if node.right: 
+            if self.checkSum(node.right, total + node.right.val, targetSum):
+                return True
+        return False
+
+
+# Recursion Simplify:
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        if not root: return False
+        if not root.left and not root.right and root.val == targetSum: return True
+
+        return self.hasPathSum(root.left, targetSum - root.val) or self.hasPathSum(root.right, targetSum - root.val) 
+```
+
+```JavaScript
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} targetSum
+ * @return {boolean}
+ */
+var hasPathSum = function(root, targetSum) {
+    if (!root) return false;
+    if (!root.left && !root.right && root.val === targetSum) return true;
+    let stack = [[root, root.val]];
+    while (stack.length) {
+        let [curr, sum] = stack.pop();
+        if (!curr.left && !curr.right && sum === targetSum) {
+            return true;
+        }
+        curr.right && stack.push([curr.right, sum + curr.right.val]);
+        curr.left && stack.push([curr.left, sum + curr.left.val]);
+    }
+    return false;
+
+};
+```
+
 ```Java
 /**
  * Definition for a binary tree node.

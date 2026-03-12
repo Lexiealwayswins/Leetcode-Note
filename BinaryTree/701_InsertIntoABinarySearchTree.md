@@ -42,8 +42,57 @@ Notice that there may exist multiple valid ways for the insertion, as long as th
 - Use a parent node to record to the parent root of subtree when iteration
 
 ## Codes:
-```Java
+```TypeScript
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
 
+function insertIntoBST(root: TreeNode | null, val: number): TreeNode | null {
+    if (!root) return new TreeNode(val);
+    if (val < root.val) root.left = insertIntoBST(root.left, val);
+    if (val > root.val) root.right = insertIntoBST(root.right, val);
+    return root;
+};
+```
+
+```Python
+# Iteration:
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        if not root: return TreeNode(val)
+        curr = root
+        while True:
+            if curr.val > val: 
+                if curr.left:
+                    curr = curr.left
+                else:
+                    curr.left = TreeNode(val)
+                    break
+            elif curr.val < val: 
+                if curr.right:
+                    curr = curr.right
+                else:
+                    curr.right = TreeNode(val)
+                    break
+        return root
+```
+```Java
 /**
  * Definition for a binary tree node.
  * public class TreeNode {

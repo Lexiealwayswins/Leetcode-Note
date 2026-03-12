@@ -33,6 +33,51 @@ Given two integer arrays inorder and postorder where inorder is the inorder trav
 - Use recursion to get the left and right subtrees.
 
 ## Codes:
+```JavaScript
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {number[]} inorder
+ * @param {number[]} postorder
+ * @return {TreeNode}
+ */
+var buildTree = function(inorder, postorder) {
+    if (!postorder.length) return null;
+    const rootVal = postorder.pop();
+    const root = new TreeNode(rootVal);
+    let rootIndex = inorder.indexOf(rootVal);
+    root.left = buildTree(inorder.slice(0, rootIndex), postorder.slice(0, rootIndex));
+    root.right = buildTree(inorder.slice(rootIndex + 1), postorder.slice(rootIndex));
+    return root;
+};
+```
+
+```Python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+        if not inorder: return None
+        rootVal = postorder[-1]
+        root = TreeNode(rootVal)
+        rootIndex = inorder.index(rootVal)
+
+        root.left = self.buildTree(inorder[:rootIndex], postorder[:len(inorder[:rootIndex])])
+        root.right = self.buildTree(inorder[rootIndex + 1:], postorder[len(inorder[:rootIndex]) : len(postorder) - 1])
+        
+        return root
+```
+
 ```Java
 /**
  * Definition for a binary tree node.

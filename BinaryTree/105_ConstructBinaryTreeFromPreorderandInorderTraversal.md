@@ -33,6 +33,53 @@ Given two integer arrays preorder and inorder where preorder is the preorder tra
 - Use recursion to get the left and right subtrees.
 
 ## Codes:
+```Python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        if not preorder: return None
+        rootVal = preorder[0]
+        root = TreeNode(rootVal)
+        rootIndex = inorder.index(rootVal)
+
+        root.left = self.buildTree(preorder[1: len(inorder[:rootIndex]) + 1], inorder[:rootIndex])
+        root.right = self.buildTree(preorder[1 + len(inorder[:rootIndex]):], inorder[rootIndex + 1:])
+
+        return root
+```
+
+```JavaScript
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {number[]} preorder
+ * @param {number[]} inorder
+ * @return {TreeNode}
+ */
+var buildTree = function(preorder, inorder) {
+    if (!preorder.length) return null;
+    const rootVal = preorder[0];
+    const root = new TreeNode(rootVal);
+    let rootIndex = inorder.indexOf(rootVal);
+
+    root.left = buildTree(preorder.slice(1, (inorder.slice(0, rootIndex)).length + 1), inorder.slice(0, rootIndex));
+    root.right = buildTree(preorder.slice((inorder.slice(0, rootIndex)).length + 1), inorder.slice(rootIndex + 1));
+
+    return root;
+};
+```
+
 ```Java
 /**
  * Definition for a binary tree node.

@@ -27,8 +27,59 @@ A leaf is a node with no children. A left leaf is a leaf that is the left child 
 
 ## Solution Notes:  
 - Use recursion
+- User preorder iteration
 
 ## Codes:
+```JavaScript
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var sumOfLeftLeaves = function(root) {
+    if (!root) return 0;
+
+    let sum = 0;
+
+    if (root.left && !root.left.left && !root.left.right) {
+        sum += root.left.val;
+    }
+
+    return sum + sumOfLeftLeaves(root.left) + sumOfLeftLeaves(root.right);
+};
+```
+
+```python
+# Preorder Iteration:
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
+        if not root: return 0
+        res = 0
+        stack = [root]
+        while stack:
+            curr = stack.pop()
+            if curr.right:
+                stack.append(curr.right)
+            if curr.left:
+                if not curr.left.left and not curr.left.right:
+                    res += curr.left.val
+                stack.append(curr.left)
+        return res
+```
+
 ```Java
 /**
  * Definition for a binary tree node.

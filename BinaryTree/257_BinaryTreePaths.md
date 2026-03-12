@@ -33,6 +33,99 @@ The number of nodes in the tree is in the range [1, 100].
 - Use a object stack to store the TreeNode and the path String in the meantime
 
 ## Codes:
+
+```Python
+# SOlution 1: Recursion
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+        if not root: return []
+        res = []
+        path = []
+        self.traversal(root, res, path)
+        return res
+
+    def traversal(self, node: Optional[TreeNode], res: List[string], path: List[int]) -> None:
+        if not node: return
+        path.append(node.val)
+        if not node.left and not node.right:
+            res.append("->".join(map(str, path)))
+        
+        if node.left: 
+            self.traversal(node.left, res, path)
+            path.pop()
+        if node.right:
+            self.traversal(node.right, res, path)
+            path.pop()
+        
+# Solution 2: Iteration
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+        if not root: return []
+        res = []
+        stack = [root]
+        path_st = [str(root.val)]
+        while stack:
+            curr = stack.pop()
+            path = path_st.pop()
+            if not curr.left and not curr.right:
+                res.append(path)
+            if curr.right:
+                stack.append(curr.right)
+                path_st.append(path + "->" + str(curr.right.val))
+            if curr.left:
+                stack.append(curr.left)
+                path_st.append(path + "->" + str(curr.left.val))
+        return res
+
+```
+
+```JavaScript
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {string[]}
+ */
+var binaryTreePaths = function(root) {
+    if (!root) return [];
+    let res = [];
+
+    const traversal = (node, path) => {
+        if (!node) return;
+        path += node.val;
+        if (!node.left && !node.right) {
+            res.push(path);
+        }
+        if (node.left) {
+            traversal(node.left, path + "->");
+        }
+        if (node.right) {
+            traversal(node.right, path + "->");
+        }
+    }
+    traversal(root, "");
+    return res;
+};
+```
+
 ```Java
 /**
  * Definition for a binary tree node.

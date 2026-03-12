@@ -30,6 +30,57 @@ Given a binary tree, determine if it is height-balanced.
 - The balance tree is a tree which the height difference of its left tree and its right tree is less than 2.
 
 ## Codes:
+```Python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        if not root: return True
+
+        def getLevel(node):
+            if not node: return 0
+
+            l, r = getLevel(node.left), getLevel(node.right)
+            if l == -1 or r == -1 or abs(l - r) > 1:
+                return -1 # Use -1 to mark all the non-balanced branches
+            return 1 + max(l, r)
+        
+        return True if getLevel(root) != -1 else False
+```
+
+```JavaScript
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isBalanced = function(root) {
+    if (!root) return true;
+
+    const getLevel = (node) => {
+        if (!node) return 0;
+        const l = getLevel(node.left), r = getLevel(node.right);
+        if (l === -1 || r === -1 || Math.abs(l - r) > 1) {
+            return -1;
+        }
+        return 1 + Math.max(l, r);
+    }
+
+    return getLevel(root) === -1 ? false : true;
+};
+```
+
 ```Java
 /**
  * Definition for a binary tree node.

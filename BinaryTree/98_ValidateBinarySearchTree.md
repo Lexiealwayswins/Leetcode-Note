@@ -30,9 +30,66 @@ Both the left and right subtrees must also be binary search trees.
 - -231 <= Node.val <= 231 - 1  
 
 ## Solution Notes:  
-- Record the middle node then we can compare the right with the middle
+- Inorder DFS Traversal
+- Recursion
 
 ## Codes:
+```TypeScript
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+function isValidBST(root: TreeNode | null): boolean {
+    if (!root) return true;
+    let curr: TreeNode | null = root;
+    let pre: TreeNode | null = null;
+    let stack: TreeNode[] = [];
+    while (curr || stack.length) {
+        if (curr) {
+            stack.push(curr);
+            curr = curr.left;
+        } else {
+            curr = stack.pop();
+            if (pre && pre.val >= curr.val) return false;
+            pre = curr;
+            curr = curr.right;
+        }
+    }
+    return true;
+};
+```
+
+```Python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def __init__(self):
+        self.pre = None
+
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        if not root: return True
+        l = self.isValidBST(root.left)
+        if self.pre != None and self.pre.val >= root.val:
+            return False
+        self.pre = root
+        r = self.isValidBST(root.right)
+        return l and r
+```
+
 ```Java
 /**
  * Definition for a binary tree node.
