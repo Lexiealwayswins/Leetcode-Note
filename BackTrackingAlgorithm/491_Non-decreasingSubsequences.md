@@ -23,6 +23,34 @@ Given an integer array nums, return all the different possible non-decreasing su
 - Because the array cannot be sorted, we cannot compare the adjacent numbers to deduplicated. Instead, use the HashSet to depublicate in each recursion
 
 ## Codes:  
+```TypeScript
+function findSubsequences(nums: number[]): number[][] {
+    let res: number[][] = [];
+    let path: number[] = [];
+    backTracking(nums, 0);
+    return res;
+
+    function backTracking(nums: number[], idx: number): void {
+        if (idx > nums.length) return;
+        if (path.length >= 2) {
+            res.push(path.slice());
+        }
+
+        let set: Set<number> = new Set();
+        for (let i = idx; i < nums.length; i++) {
+            if (
+                (path.length && nums[i] < path[path.length - 1]) || 
+                set.has(nums[i])
+                ) continue;
+            path.push(nums[i]);
+            set.add(nums[i]);
+            backTracking(nums, i + 1);
+            path.pop();
+        }
+    }
+};
+```
+
 ```Java
 class Solution {
     List<List<Integer>> res = new ArrayList<>();

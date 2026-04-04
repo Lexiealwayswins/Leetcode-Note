@@ -43,6 +43,57 @@ Using 4 different numbers in the range [1,9], the smallest sum we can get is 1+2
 - Use recursion to traverse the 1-9 in for loops
 
 ## Codes:  
+```TypeScript
+function combinationSum3(k: number, n: number): number[][] {
+    let res: number[][] = [];
+    if (!k || !n) return res;
+    let path: number[] = [];
+    let sum: number = 0;
+    function backTracking (k: number, n: number, idx: number): void {
+        if (path.length === k) {
+            if (sum === n) res.push(path.slice());
+            return;
+        }
+
+        for (let i = idx; i <= 9 - (k - path.length) + 1; i++) {
+            path.push(i);
+            sum += i;
+            backTracking (k, n, i + 1);
+            sum -= path.pop();
+        }
+    }
+
+    backTracking(k, n, 1);
+    return res;
+};
+
+```
+
+```Python
+class Solution:
+    def __init__(self):
+        self.res = []
+        self.path = []
+        self.total = 0
+
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        self.backtracking(k, n, 1)
+        return self.res
+
+    def backtracking(self, k: int, n: int, startIdx) -> None:
+        if len(self.path) == k:
+            if self.total == n:
+                self.res.append(self.path[:])
+            return
+        
+        for i in range(startIdx, 9 - (k - len(self.path)) + 2):
+            self.path.append(i)
+            self.total += i
+            self.backtracking(k, n, i + 1)
+            self.total -= self.path.pop()
+            
+```
+
 ```Java
 class Solution {
     List<List<Integer>> res;

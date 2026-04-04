@@ -39,6 +39,33 @@ Note: The solution set must not contain duplicate combinations.
 - don't forget to skip the duplicated elements in results
 
 ## Codes:  
+```Typescript
+function combinationSum2(candidates: number[], target: number): number[][] {
+    let res: number[][] = [];
+    let path: number[] = [];
+    let total: number = 0;
+    candidates.sort((a, b) => a - b);
+
+    function backTracking (c: number[], t: number, idx: number): void {
+        if (total === t) {
+            res.push(path.slice());
+            return;
+        }
+        for (let i = idx; i < c.length && total + c[i] <= t; i++) {
+            // skip duplicated number on the same level
+            if (i > idx && c[i] == c[i - 1]) continue;
+            path.push(c[i]);
+            total += c[i];
+            backTracking(c, t, i + 1);
+            total -= path.pop();
+        }
+    }
+
+    backTracking(candidates, target, 0);
+    return res;
+};
+```
+
 ```Java
 class Solution {
     List<List<Integer>> res;

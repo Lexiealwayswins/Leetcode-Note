@@ -40,6 +40,32 @@ These are the only two combinations.
 - Trackback both the path and the sum
 
 ## Codes:  
+```TypeScript
+function combinationSum(candidates: number[], target: number): number[][] {
+    let res: number[][] = [];
+    let path: number[] = [];
+    let total: number = 0;
+
+    function backTracking (c: number[], t: number, idx: number): void {
+        if (total > t) return;
+
+        if (total === t) {
+            res.push(path.slice());
+            return;
+        }
+        for (let i = idx; i < c.length; i++) {
+            path.push(c[i]);
+            total += c[i];
+            backTracking(c, t, i);
+            total -= path.pop();
+        }
+    }
+
+    backTracking(candidates, target, 0);
+    return res;
+};
+```
+
 ```Java
 class Solution {
     List<List<Integer>> res;

@@ -25,6 +25,37 @@ Given a string s, partition s such that every substring of the partition is a pa
 - Use two pointer to check the Palindrome
 
 ## Codes:  
+```TypeScript
+function partition(s: string): string[][] {
+    let res: string[][] = [];
+    let path: string[] = [];
+
+    function backTracking (s: string, idx: number): void {
+        if (idx >= s.length) {
+            res.push(path.slice());
+            return;
+        }
+
+        for (let i = idx; i < s.length; i++) {
+            if (isPalindrome(s.substring(idx, i + 1))) {
+                path.push(s.substring(idx, i + 1));
+            } else {
+                continue;
+            }
+            backTracking (s, i + 1);
+            path.pop();
+        }
+    }
+
+    function isPalindrome (s: string): boolean {
+        return s === s.split("").reverse().join("");
+    }
+
+    backTracking(s, 0);
+    return res;
+};
+```
+
 ```Java
 class Solution {
     List<List<String>> res;

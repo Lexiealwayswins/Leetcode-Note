@@ -30,6 +30,72 @@ A mapping of digits to letters (just like on the telephone buttons) is given bel
 - Use recursion to traverse the digits in for loops
 
 ## Codes:  
+```TypeScript
+function letterCombinations(digits: string): string[] {
+    const m = new Map<number, string>();
+    m.set(2, "abc")
+    m.set(3, "def")
+    m.set(4, "ghi")
+    m.set(5, "jkl")
+    m.set(6, "mno")
+    m.set(7, "pqrs")
+    m.set(8, "tuv")
+    m.set(9, "wxyz")
+    let res: string[] = [];
+    let path: string = "";
+
+    function backTracking (digits: string, idx: number): void {
+        if (path.length === digits.length) {
+            res.push(path);
+            return;
+        }
+
+        const s = m.get(parseInt(digits[idx]));
+        for (let i = 0; i < s.length; i++) {
+            path += s[i];
+            backTracking(digits, idx + 1);
+            path = path.slice(0, -1);
+        }
+    }   
+
+    backTracking(digits, 0);
+    return res;
+};
+```
+
+```Python
+class Solution:
+    def __init__(self):
+        self.path = ""
+        self.res = []
+        self.dic = {
+            2: "abc",
+            3: "def",
+            4: "ghi",
+            5: "jkl",
+            6: "mno",
+            7: "pqrs",
+            8: "tuv",
+            9: "wxyz"
+        }
+
+    def letterCombinations(self, digits: str) -> List[str]:
+        if not len(digits): return res
+        self.backTracking(digits, 0)
+        return self.res
+
+    def backTracking(self, digits, idx) -> None:
+        if len(self.path) == len(digits):
+            self.res.append(self.path)
+            return
+        
+        s = self.dic[int(digits[idx])]
+        for i in range(len(s)):
+            self.path += s[i]
+            self.backTracking(digits, idx + 1)
+            self.path = self.path[:-1]
+```
+
 ```Java
 class Solution {
     List<String> res;

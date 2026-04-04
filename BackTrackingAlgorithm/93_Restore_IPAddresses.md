@@ -34,6 +34,44 @@ Given a string s containing only digits, return all possible valid IP addresses 
 - Use a number to count the number of IP parts
 
 ## Codes:  
+```Python
+class Solution:
+    def __init__(self):
+        self.res = []
+        self.path = []
+
+    def restoreIpAddresses(self, s: str) -> List[str]:
+        if not s.isdigit(): return self.res
+        self.backTracking(s, 0)
+        return self.res
+    
+    def backTracking(self, s: str, idx: int) -> None:
+        if len(self.path) == 4 and idx >= len(s):
+            self.res.append(".".join(self.path))
+            return
+        if len(self.path) == 4 or idx >= len(s): return
+        
+        for i in range(idx, len(s)):
+            if len(path) == 3:
+                subs = s[idx : ]
+            else:
+                subs = s[idx : i + 1]
+            if not self.checkSubstring(subs): continue
+            self.path.append(subs)
+
+            self.backTracking(s, i + 1)
+            self.path.pop()
+
+    def checkSubstring (self, s) -> bool:
+        if len(s) == 1 and s[0] == "0": 
+            return True
+        if len(s) > 0 and s[0] == "0":
+            return False
+        if int(s) < 0 or int(s) > 255:
+            return False
+        return True
+```
+
 ```Java
 class Solution {
     List<String> res = new ArrayList<>();

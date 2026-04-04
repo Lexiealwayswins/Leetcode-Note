@@ -27,6 +27,25 @@ The solution set must not contain duplicate subsets. Return the solution in any 
 - Traverse each path in recursion
 
 ## Codes:  
+```TypeScript
+function subsets(nums: number[]): number[][] {
+    let res: number[][] = [];
+    let path: number[] = [];
+    backTracking(nums, 0);
+    return res;
+
+    function backTracking(nums: number[], idx: number): void {
+        res.push(path.slice());
+        if (idx >= nums.length) return;
+        for (let i = idx; i < nums.length; i++) {
+            path.push(nums[i]);
+            backTracking(nums, i + 1);
+            path.pop();
+        }
+    }
+};
+```
+
 ```Java
 class Solution {
     List<List<Integer>> res = new ArrayList<>();

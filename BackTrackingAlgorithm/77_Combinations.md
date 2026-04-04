@@ -30,6 +30,52 @@ Note that combinations are unordered, i.e., [1,2] and [2,1] are considered to be
 - Can optimize the loop through trim the length of the loop, because we only need to traverse for the rest elements in k
 
 ## Codes:  
+```Python
+class Solution:
+    def __init__(self):
+        self.path = []
+        self.res = []
+
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        if not n or not k: return []
+        self.backTracking(n, k, 1)
+        return self.res
+    
+    def backTracking(self, n: int, k: int, idx: int) -> None:
+        if len(self.path) == k:
+            self.res.append(self.path[:])
+            return
+        
+        for i in range(idx, n - (k - len(self.path)) + 2):
+            self.path.append(i)
+            self.backTracking(n, k, i + 1)
+            self.path.pop()
+        
+```
+
+```TypeScript
+function combine(n: number, k: number): number[][] {
+    let path: number[] = [];
+    let res: number[][] = [];
+
+    function backtracking (n: number, k: number, startIdx: number): void {
+        if (path.length === k) {
+            res.push(path.slice());
+            return;
+        }
+
+        for (let i = startIdx; i <= n - (k - path.length) + 1; i++) {
+            path.push(i);
+            backtracking(n, k, i + 1);
+            path.pop();
+        }
+    }
+
+    backtracking(n, k, 1);
+    return res;
+};
+```
+
 ```Java
 class Solution {
     List<List<Integer>> res;

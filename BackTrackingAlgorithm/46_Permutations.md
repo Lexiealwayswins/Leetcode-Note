@@ -27,6 +27,29 @@ Given an array nums of distinct integers, return all the possible permutations. 
 - Because evetytime we search from the start, we don't need the start index, just start from 0 index in for loops in each recursion
 
 ## Codes:  
+```TypeScript
+function permute(nums: number[]): number[][] {
+    let res: number[][] = [];
+    let path: number[] = [];
+    backTracking(nums);
+    return res;
+
+    function backTracking(nums: number[]): void {
+        if (path.length === nums.length) {
+            res.push(path.slice());
+            return;
+        }
+
+        for (let i = 0; i < nums.length; i++) {
+            if (path.includes(nums[i])) continue;
+            path.push(nums[i]);
+            backTracking(nums);
+            path.pop();
+        }
+    }
+};
+```
+
 ```Java
 class Solution {
     List<List<Integer>> res = new ArrayList<>();

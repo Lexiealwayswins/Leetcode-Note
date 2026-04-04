@@ -28,6 +28,27 @@ The solution set must not contain duplicate subsets. Return the solution in any 
 - deduplicate in the for loop
 
 ## Codes:  
+```TypeScript
+function subsetsWithDup(nums: number[]): number[][] {
+    let res: number[][] = [];
+    let path: number[] = [];
+    nums.sort((a, b) => a - b);
+    backTracking(nums, 0);
+    return res;
+
+    function backTracking(nums: number[], idx: number): void {
+        res.push(path.slice());
+        if (idx >= nums.length) return;
+        for (let i = idx; i < nums.length; i++) {
+            if (i > idx && nums[i] == nums[i - 1]) continue;
+            path.push(nums[i]);
+            backTracking(nums, i + 1);
+            path.pop();
+        }
+    }
+};
+```
+
 ```Java
 class Solution {
     List<List<Integer>> res = new ArrayList<>();

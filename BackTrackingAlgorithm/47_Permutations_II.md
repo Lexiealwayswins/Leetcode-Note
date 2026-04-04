@@ -25,9 +25,38 @@ Given a collection of numbers, nums, that might contain duplicates, return all p
 ## Solution Notes:   
 - Because evetytime we search from the start, we don't need the start index, just start from 0 index in for loops in each recursion
 - Use a boolean array to record the number which has been added to path
-- used[i - 1] == 0 means it's a new round and this number has been used before, so we need to skip it in the new round to avoid duplication
+- used[i - 1] == 0 means it's a new round which is same level, not same branch, and this number has been used before, so we need to skip it in the new round to avoid duplication
 
 ## Codes:  
+```TypeScript
+function permuteUnique(nums: number[]): number[][] {
+    let res: number[][] = [];
+    let path: number[] = [];
+    nums.sort((a, b) => a - b);
+    let used: boolean[] = new Array(nums.length).fill(false);
+    backTracking();
+    return res;
+
+    function backTracking(): void {
+        if (path.length === nums.length) {
+            res.push(path.slice());
+            return;
+        }
+
+        for (let i = 0; i < nums.length; i++) {
+            if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) continue;
+            if (!used[i]) {
+                path.push(nums[i]);
+                used[i] = true;
+                backTracking();
+                path.pop();
+                used[i] = false;
+            }
+        }
+    }
+};
+```
+
 ```Java
 class Solution {
     List<List<Integer>> res = new ArrayList<>();
