@@ -32,6 +32,24 @@ You must write an algorithm with O(log n) runtime complexity.
 - be careful about the boundary
 
 ## Codes:
+- TypeScript
+```TypeScript
+function searchInsert(nums: number[], target: number): number {
+    let l = 0, r = nums.length - 1;
+    while (l <= r) {
+        let m = l + Math.floor((r - l) / 2);
+        if (target < nums[m]) {
+            r = m - 1;
+        } else if (target > nums[m]) {
+            l = m + 1;
+        } else {
+            return m;
+        }
+    }
+    return l;
+};
+```
+
 - Python
 ```Python
 class Solution:

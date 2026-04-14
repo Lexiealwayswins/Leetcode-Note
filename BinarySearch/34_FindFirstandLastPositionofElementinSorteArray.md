@@ -35,6 +35,44 @@ You must write an algorithm with O(log n) runtime complexity.
 - be careful about the boundary
 
 ## Codes:
+- TypeScript
+```TypeScript
+function searchRange(nums: number[], target: number): number[] {
+    const res = [-1, -1];
+    let l = 0, r = nums.length - 1;
+    while (l <= r) {
+        let m = l + Math.floor((r - l) / 2);
+        if (nums[m] === target) {
+            if (nums[m - 1] < target) {
+                res[0] = m;
+            } else {
+                let tmp = m - 1;
+                while (tmp >= l && nums[tmp] === target) {
+                    tmp--;
+                }
+                res[0] = tmp + 1;
+            }
+            if (nums[m + 1] > target) {
+                res[1] = m;
+            } else {
+                let tmp = m + 1;
+                while (tmp <= r && nums[tmp] === target) {
+                    tmp++;
+                }
+                res[1] = tmp - 1;
+            }
+            break;
+
+        } else if (nums[m] < target){
+            l = m + 1;
+        } else {
+            r = m - 1;
+        }
+    }
+    return res;
+};
+```
+
 - Python
 ```Python
 class Solution:

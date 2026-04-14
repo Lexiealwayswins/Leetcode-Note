@@ -39,6 +39,27 @@ You must write an algorithm with O(log n) runtime complexity.
 - Binary Search: check which half is sorted and search that side
 
 ## Codes:
+```Python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        l, r = 0, len(nums) - 1
+        while l <= r:
+            m = l + (r - l) // 2
+            if nums[m] == target: return m
+            if nums[m] > nums[r]:
+                if target >= nums[l] and target < nums[m]: 
+                    r = m - 1
+                else:
+                    l = m + 1
+            else:
+                if target <= nums[r] and target > nums[m]:
+                    l = m + 1
+                else:
+                    r = m - 1
+        return -1
+```
+
+
 ```TypeScript
 function search(nums: number[], target: number): number {
     let l = 0, r = nums.length - 1;
