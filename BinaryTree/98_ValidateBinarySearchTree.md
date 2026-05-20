@@ -107,18 +107,17 @@ class Solution:
  * }
  */
 class Solution {
-    TreeNode max;
+    TreeNode prev;
     public boolean isValidBST(TreeNode root) {
         if (root == null) return true;
-
         boolean l = isValidBST(root.left);
-        if (!l) return false;
+        
+        if (prev != null && prev.val >= root.val) return false;
+        prev = root;
 
-        if (max != null && root.val <= max.val) return false;
+        boolean r = isValidBST(root.right);
 
-        max = root;
-
-        return isValidBST(root.right);
+        return l && r;
     }
 }
-```Java
+```

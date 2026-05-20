@@ -1,4 +1,4 @@
-# 62. Unique Paths - Medium
+# Backpack problem(01)
 
 ## Problem Statement:  
 ![](https://kamacoder.com/problempage.php?pid=1046)
@@ -50,7 +50,7 @@ Data range:
 The space occupied and value of research materials are both less than or equal to 1000.
 
 ## Solution Notes:  
-- Dynamic Programming typical backpack problem
+- Dynamic Programming typical 01 backpack problem
 - Solution 1: Using 2D array
     - i is item index, j is bag's total weight
     - dp[i][j] is max bag value
@@ -106,7 +106,7 @@ readline.on('close', () => {
     }
 
     for (let i = 1; i < n; i++) {
-        for (let j = 0; j <= bagWeight; j++) {
+        for (let j = 1; j <= bagWeight; j++) {
             dp[i][j] = weight[i] > j
                 ? dp[i - 1][j]
                 : Math.max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i]);

@@ -28,10 +28,110 @@ Given an integer array nums and an integer k, return the k most frequent element
 ### Follow up: Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
 
 ## Solution Notes:
-- use a map to store the num and the frequency of this num
-- use PriorityQuene to rank the frequency
+- TypeScript:
+    - use a map to store the num and the frequency of this num
+    - use a min heap to get k max frequency
+    - if there are bigger frequency after k, then replace the top and maintain the k min heap
+    - min heap only need to maintain k elements (only compare the top)
+    - while max heap need to maintain n elements (need to compare all rest elements)
+- Java：
+    - use a map to store the num and the frequency of this num
+    - use PriorityQuene to rank the frequency
 
 ## Codes:
+```TypeScript
+// Solution 1: Hash
+function topKFrequent(nums: number[], k: number): number[] {
+    const map = new Map<number, number>();
+    for (const n of nums) {
+        map.set(n, (map.get(n) || 0) + 1);
+    }
+    const sorted_arr: number[][] = Array.from(map).sort((a, b) => b[1] - a[1]);
+    const res: number[] = [];
+    for (let i = 0; i < k; i++) {
+        res.push(sorted_arr[i][0]);
+    }
+    return res;
+};
+
+
+// Solution 2: Heap
+function topKFrequent(nums: number[], k: number): number[] {
+    const map = new Map<number, number>();
+    
+    // 1. 统计频率 O(n)
+    for (const n of nums) {
+        map.set(n, (map.get(n) || 0) + 1);
+    }
+    
+    // 2. 用小顶堆维护前 k 个高频元素 O(n log k)
+    const minHeap: [number, number][] = [];   // [num, freq]
+    
+    for (const [num, freq] of map.entries()) {
+        if (minHeap.length < k) {
+            minHeap.push([num, freq]);
+            // 往上维护小顶堆
+            heapifyUp(minHeap);
+        } else if (freq > minHeap[0][1]) {
+            minHeap[0] = [num, freq];
+            // 往下维护小顶堆
+            heapifyDown(minHeap);
+        }
+    }
+    
+    // 3. 提取结果（小顶堆最上面是最小的，所以要反序）
+    const res: number[] = [];
+    // while (minHeap.length > 0) {
+    //     res.push(minHeap[0][0]);
+    //     minHeap[0] = minHeap[minHeap.length - 1];
+    //     minHeap.pop();
+    //     heapifyDown(minHeap);
+    // }
+    for (const [n, _] of minheap) {
+        res.push(n);
+    }
+    
+    return res.reverse();
+};
+
+// 小顶堆辅助函数
+// current index i：
+// parent index：Math.floor((i-1)/2)
+// left node index：2*i + 1
+// right node index：2*i + 2
+function heapifyUp(heap: [number, number][]): void {
+    let index = heap.length - 1;
+    while (index > 0) {
+        const parent = Math.floor((index - 1) / 2);
+        if (heap[index][1] >= heap[parent][1]) break;
+        [heap[index], heap[parent]] = [heap[parent], heap[index]];
+        index = parent;
+    }
+}
+
+function heapifyDown(heap: [number, number][]): void {
+    let index = 0;
+    const length = heap.length;
+    
+    while (true) {
+        let left = 2 * index + 1;
+        let right = 2 * index + 2;
+        let smallest = index;
+        
+        if (left < length && heap[left][1] < heap[smallest][1]) {
+            smallest = left;
+        }
+        if (right < length && heap[right][1] < heap[smallest][1]) {
+            smallest = right;
+        }
+        if (smallest === index) break;
+        
+        [heap[index], heap[smallest]] = [heap[smallest], heap[index]];
+        index = smallest;
+    }
+}
+```
+
 ```Python
 # Solution 1: 
 # collections.Counter can make a frequency map
@@ -189,4 +289,4 @@ class Solution {
         return res;
     }
 }
-···Java
+```

@@ -30,9 +30,12 @@ Each time you can either climb 1 or 2 steps. In how many distinct ways can you c
 
 ## Solution Notes:  
 - Dynamic Programming 
+- Solution 1: Simple Fibonacci
 - climb i stairs can be dp[i - 1] way + 1 step
 - climb i stairs can be dp[i - 2] way + 2 step
 - So dp[i] = dp[i - 2] + dp[i - 1]
+
+- Solution 2: complete backpack
 
 
 ## Codes:
@@ -46,3 +49,16 @@ function climbStairs(n: number): number {
 };
 ```
 
+```Java
+class Solution {
+    public int climbStairs(int n) {
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        for (int i = 1; i <= n; i++) {
+            dp[i] += dp[i - 1];
+            if (i >= 2) dp[i] += dp[i - 2];
+        }
+        return dp[n];
+    }
+}
+```

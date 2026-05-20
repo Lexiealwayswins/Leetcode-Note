@@ -79,6 +79,37 @@ class Solution:
         return res
 ```
 
+```TypeScript
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+function levelOrder(root: TreeNode | null): number[][] {
+    const res: number[][] = [];
+    function traversal (node: TreeNode | null, depth: number) : void {
+        if (!node) return;
+        if (res.length === depth) {
+            res.push([]);
+        }
+        res[depth].push(node.val);
+        traversal(node.left, depth + 1);
+        traversal(node.right, depth + 1);
+    }
+    traversal(root, 0);
+    return res;
+};
+```
+
 ```JavaScript
 /**
  * Definition for a binary tree node.
@@ -114,6 +145,44 @@ var levelOrder = function(root) {
 
 ```Java
 // Solution 1: BFS Iteration
+// 用 ArrayDeque：
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (root == null) return res;
+        Queue<TreeNode> q = new ArrayDeque<>();
+        q.offer(root);
+        while (!q.isEmpty()) {
+            List<Integer> level = new ArrayList<>();
+            int len = q.size();
+            while (len > 0) {
+                TreeNode curr = q.poll();
+                level.add(curr.val);
+                if (curr.left != null) q.offer(curr.left);
+                if (curr.right != null) q.offer(curr.right);
+                len--;
+            }
+            res.add(level);
+        }
+        return res;
+    }
+}
+// 用LinkedList
 /**
  * Definition for a binary tree node.
  * public class TreeNode {

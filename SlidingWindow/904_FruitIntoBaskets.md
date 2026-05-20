@@ -43,6 +43,29 @@ If we had started at the first tree, we would only pick from trees [1,2].
 - Sliding windows
 
 ## Codes:
+- TypeScript
+```TypeScript
+function totalFruit(fruits: number[]): number {
+    const map = new Map<number, number>();
+    let l = 0, r = 0;
+    let res = 0;
+    while (r < fruits.length) {
+        map.set(fruits[r], (map.get(fruits[r]) || 0) + 1);
+
+        while (map.size > 2) {
+            map.set(fruits[l], map.get(fruits[l]) - 1);
+            if (map.get(fruits[l]) === 0) map.delete(fruits[l]);
+            l++;
+        }
+        
+        res = Math.max(res, r - l + 1);
+
+        r++;
+    }
+    return res;
+};
+```
+
 - Python
 ```Python
 class Solution:

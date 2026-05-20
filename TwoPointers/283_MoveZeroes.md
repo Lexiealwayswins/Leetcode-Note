@@ -27,6 +27,28 @@ Output: [0]
 - Two Pointers approach
 
 ## Codes:
+```TypeScript
+/**
+ Do not return anything, modify nums in-place instead.
+ */
+function moveZeroes(nums: number[]): void {
+    let l: number = 0;
+    let r: number = 0;
+    while (r < nums.length) {
+        if (nums[l] !== 0) {
+            l++;
+            r++;
+            continue;
+        }
+        if (nums[r] !== 0) {
+            nums[l] = nums[r];
+            nums[r] = 0;
+            l++;
+        }
+        r++;
+    }
+};
+```
 
 - Python
 ```Python
