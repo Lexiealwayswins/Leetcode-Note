@@ -52,6 +52,24 @@ function lengthOfLongestSubstring(s: string): number {
 };
 ```
 
+```Python
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        if len(s) == 0: return 0
+        l, r = 0, 0
+        res = 1
+        temp = set()
+        while r < len(s):
+            while s[r] in temp:
+                temp.remove(s[l])
+                l += 1
+            temp.add(s[r])
+            res = max(res, r - l + 1)
+            r += 1
+        return res
+
+```
+
 ```Java
 class Solution {
     public int lengthOfLongestSubstring(String s) {

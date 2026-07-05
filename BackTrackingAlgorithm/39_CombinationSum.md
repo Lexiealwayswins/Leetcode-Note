@@ -67,6 +67,34 @@ function combinationSum(candidates: number[], target: number): number[][] {
 ```
 
 ```Java
+// 简洁写法
+class Solution {
+    List<List<Integer>> res = new ArrayList<>();
+    List<Integer> path = new ArrayList<>(); 
+    int sum = 0;
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        backtracking(candidates, target, 0);
+        return res;
+    }
+
+    public void backtracking(int[] candidates, int target, int idx) {
+        if (sum > target) return;
+        if (sum == target) {
+            res.add(new ArrayList<>(path));
+            return;
+        }
+
+        for (int i = idx; i < candidates.length; i++) {
+            path.add(candidates[i]);
+            sum += candidates[i];
+            backtracking(candidates, target, i);
+            sum -= path.remove(path.size() - 1);
+        }
+    }
+}
+
+
+// 精细写法
 class Solution {
     List<List<Integer>> res;
     List<Integer> path;

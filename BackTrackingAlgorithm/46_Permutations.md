@@ -52,6 +52,28 @@ function permute(nums: number[]): number[][] {
 };
 ```
 
+```Python
+class Solution:
+    def __init__(self):
+        self.res = []
+        self.path = []
+        
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        self.backtracking(nums)
+        return self.res
+
+    def backtracking(self, nums: List[int]) -> void:
+        if len(self.path) == len(nums):
+            self.res.append(self.path[:])
+            return
+        
+        for i in range(0, len(nums)):
+            if nums[i] in self.path: continue
+            self.path.append(nums[i])
+            self.backtracking(nums)
+            self.path.pop()
+```
+
 ```Java
 class Solution {
     List<List<Integer>> res = new ArrayList<>();

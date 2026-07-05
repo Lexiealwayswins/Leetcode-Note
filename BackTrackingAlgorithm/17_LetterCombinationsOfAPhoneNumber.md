@@ -86,7 +86,7 @@ class Solution:
 
     def backTracking(self, digits, idx) -> None:
         if len(self.path) == len(digits):
-            self.res.append(self.path)
+            self.res.append(self.path[:])
             return
         
         s = self.dic[int(digits[idx])]

@@ -46,6 +46,25 @@ function subsets(nums: number[]): number[][] {
 };
 ```
 
+```Python
+class Solution:
+    def __init__(self):
+        self.res = []
+        self.path = []
+
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        self.backtracking(nums, 0)
+        return self.res
+
+    def backtracking(self, nums: List[int], idx: int) -> void:
+        self.res.append(self.path[:])
+        
+        for i in range(idx, len(nums)):
+            self.path.append(nums[i])
+            self.backtracking(nums, i + 1)
+            self.path.pop()
+```
+
 ```Java
 class Solution {
     List<List<Integer>> res = new ArrayList<>();

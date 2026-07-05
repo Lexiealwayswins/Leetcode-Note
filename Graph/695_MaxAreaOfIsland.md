@@ -44,6 +44,91 @@ Return the maximum area of an island in grid. If there is no island, return 0.
 - Solution 2: BFS
 
 ## Codes:
+```Java
+// DFS
+class Solution {
+    public static int res = 0;
+    public static int area = 0;
+    public int maxAreaOfIsland(int[][] grid) {
+        boolean[][] visited = new boolean[grid.length][grid[0].length];
+        int res = 0;
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+
+                if (grid[i][j] == 1 && visited[i][j] == false) {
+                    visited[i][j] = true;
+                    area = 1;
+                    dfs(grid, visited, i, j);
+                    res = Math.max(res, area);
+                }
+            }
+        }
+        return res;
+    }
+
+    public void dfs (int[][] grid, boolean[][] visited, int x, int y) {
+        int[][] dir = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+        for (int[] d: dir) {
+            int nextX = x + d[1];
+            int nextY = y + d[0];
+
+            if (nextX < 0 || nextX >= grid.length || nextY < 0 || nextY >= grid[0].length) continue;
+
+            if (grid[nextX][nextY] == 1 && visited[nextX][nextY] == false) {
+                visited[nextX][nextY] = true;
+                area++;
+                dfs(grid, visited, nextX, nextY);
+            }
+        }
+    }
+}
+
+// BFS
+class Solution {
+    public static int res = 0;
+    public static int area = 0;
+    public int maxAreaOfIsland(int[][] grid) {
+        boolean[][] visited = new boolean[grid.length][grid[0].length];
+        int res = 0;
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+
+                if (grid[i][j] == 1 && visited[i][j] == false) {
+                    visited[i][j] = true;
+                    area = 1;
+                    bfs(grid, visited, i, j);
+                    res = Math.max(res, area);
+                }
+            }
+        }
+        return res;
+    }
+
+    public void bfs (int[][] grid, boolean[][] visited, int x, int y) {
+        int[][] dir = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+        ArrayDeque<int[]> queue = new ArrayDeque<>();
+        queue.offer(new int[]{x, y});
+        while (!queue.isEmpty()) {
+            int curr[] = queue.poll();
+            for (int[] d: dir) {
+                int nextX = curr[0] + d[1];
+                int nextY = curr[1] + d[0];
+
+                if (nextX < 0 || nextX >= grid.length || nextY < 0 || nextY >= grid[0].length) continue;
+
+                if (grid[nextX][nextY] == 1 && visited[nextX][nextY] == false) {
+                    visited[nextX][nextY] = true;
+                    area++;
+                    queue.offer(new int[]{nextX, nextY});
+                }
+            }
+        }
+    }
+}
+```
+
 ```TypeScript
 // Solution 1: Optimized prunning traversal
 function maxAreaOfIsland(grid: number[][]): number {

@@ -26,6 +26,7 @@ haystack and needle consist of only lowercase English characters.
 ## Solution Notes:
 - use KMP Algorithm to get the prefix table, which is a array of the greatest dublicate prefix number.  
 - ![](https://code-thinking.cdn.bcebos.com/pics/KMP精讲8.png)
+- ![](https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0028.实现strStr.md)
 - The reason why this approach is efficient: as the prefix is the same as suffix in the prefix table, when we meet a different character, we can skip matching the prefix and jump to the position which is after the prefix and before the suffix.
 
 

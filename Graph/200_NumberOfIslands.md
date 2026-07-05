@@ -149,6 +149,83 @@ function numIslands(grid: string[][]): number {
 };
 ```
 
+```Java
+// DFS
+class Solution {
+    public static int[][] dir = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+
+    public int numIslands(char[][] grid) {
+        int res = 0;
+        boolean[][] visited = new boolean[grid.length][grid[0].length];
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == '1' && visited[i][j] == false) {
+                    res++;
+                    visited[i][j] = true;
+                    dfs(grid, visited, i, j);
+                }
+            }
+        }
+        return res;
+    }
+
+    public void dfs(char[][] grid, boolean[][] visited, int x, int y) {
+        for (int[] d: dir) {
+            int nextX = x + d[1];
+            int nextY = y + d[0];
+            if (nextX < 0 || nextX >= grid.length || nextY < 0 || nextY >= grid[0].length) continue;
+
+            if (grid[nextX][nextY] == '1' && visited[nextX][nextY] == false) {
+                visited[nextX][nextY] = true;
+                dfs(grid, visited, nextX, nextY);
+            }
+        }
+    }
+}
+
+// BFS
+class Solution {
+    public static int[][] dir = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+
+    public int numIslands(char[][] grid) {
+        int res = 0;
+        boolean[][] visited = new boolean[grid.length][grid[0].length];
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == '1' && visited[i][j] == false) {
+                    res++;
+                    visited[i][j] = true;
+                    bfs(grid, visited, i, j);
+                }
+            }
+        }
+        return res;
+    }
+
+    public void bfs(char[][] grid, boolean[][] visited, int x, int y) {
+        ArrayDeque<int[]> queue = new ArrayDeque<>();
+        queue.offer(new int[]{x, y});
+        while (!queue.isEmpty()) {
+            int[] curr = queue.poll();
+            int currX = curr[0];
+            int currY = curr[1];
+            for (int[] d: dir) {
+                int nextX = currX + d[1];
+                int nextY = currY + d[0];
+                if (nextX < 0 || nextX >= grid.length || nextY < 0 || nextY >= grid[0].length) continue;
+
+                if (grid[nextX][nextY] == '1' && visited[nextX][nextY] == false) {
+                    visited[nextX][nextY] = true;
+                    queue.offer(new int[]{nextX, nextY});
+                }
+            }
+
+        }
+
+    }
+}
+```
+
 ACM Version：https://kamacoder.com/problempage.php?pid=1171
 
 ```JavaScript

@@ -2,6 +2,9 @@
 
 ## Problem Statement:  
 
+Practice ACM:
+https://kamacoder.com/problempage.php?pid=1170
+
 Given a directed acyclic graph (DAG) of n nodes labeled from 0 to n - 1, find all possible paths from node 0 to node n - 1 and return them in any order.
 
 The graph is given as follows: graph[i] is a list of all nodes you can visit from node i (i.e., there is a directed edge from node i to node graph[i][j]).
@@ -10,15 +13,15 @@ The graph is given as follows: graph[i] is a list of all nodes you can visit fro
 ### Example 1:  
 ![](https://assets.leetcode.com/uploads/2020/09/28/all_1.jpg)
 
-**Input:** graph = [[1,2],[3],[3],[]]
-**Output:** [[0,1,3],[0,2,3]]
+**Input:** graph = \[[1,2],[3],[3],[]]
+**Output:** \[[0,1,3],[0,2,3]]
 **Explanation:** There are two paths: 0 -> 1 -> 3 and 0 -> 2 -> 3.
 
 ### Example 2:  
 ![](https://assets.leetcode.com/uploads/2020/09/28/all_2.jpg)
 
-**Input:** graph = [[4,3,1],[3,2,4],[3],[4],[]]
-**Output:** [[0,4],[0,3,4],[0,1,3,4],[0,1,2,3,4],[0,1,4]]
+**Input:** graph = \[[4,3,1],[3,2,4],[3],[4],[]]
+**Output:** \[[0,4],[0,3,4],[0,1,3,4],[0,1,2,3,4],[0,1,4]]
 
 
 ### Constraints:
@@ -57,6 +60,28 @@ function allPathsSourceTarget(graph: number[][]): number[][] {
 };
 ```
 
+```Python
+class Solution:
+    def __init__(self):
+        self.res = []
+        self.path = [0]
+
+    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        self.dfs(graph, 0)
+        return self.res
+    
+    def dfs (self, graph, idx) -> void:
+        if idx == len(graph) - 1:
+            self.res.append(self.path[:])
+            return
+        
+        for i in graph[idx]:
+            self.path.append(i)
+            self.dfs(graph, i)
+            self.path.pop()
+
+```
+
 ```Java
 class Solution {
     List<List<Integer>> res = new ArrayList<>();
@@ -81,3 +106,52 @@ class Solution {
 }
 ```
 
+ACM Version：https://kamacoder.com/problempage.php?pid=1170
+
+```Java
+import java.util.Scanner;
+import java.util.ArrayList;
+public class Main {
+    static ArrayList<Integer> path = new ArrayList<>();
+    static ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+    public static void main (String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int M = sc.nextInt();
+
+        ArrayList<ArrayList<Integer>> graph = new ArrayList<>(N + 1);
+
+        for (int i = 0; i <= N; i++) {
+            graph.add(new ArrayList<>());
+        }   
+
+        while (M-- > 0) {
+            graph.get(sc.nextInt()).add(sc.nextInt());
+        }
+
+        path.add(1);
+        dfs(graph, 1, N);
+        
+        if (res.isEmpty()) System.out.println(-1);
+        for (ArrayList<Integer> p: res){
+            for (int i = 0; i < p.size() - 1; i++) {
+                System.out.print(p.get(i) + " ");
+            }
+            System.out.println(p.get(p.size() - 1));
+        }
+    }
+
+    public static void dfs (ArrayList<ArrayList<Integer>> graph, int idx, int n) {
+        if (idx == n) {
+            res.add(new ArrayList<>(path));
+            return;
+        }
+
+        for (int i: graph.get(idx)) {
+            path.add(i);
+            dfs(graph, i, n);
+            path.remove(path.size() - 1);
+        }
+    }
+}
+```
